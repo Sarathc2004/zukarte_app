@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
 import 'package:zukarte_app/Core/colors.dart';
 import 'package:zukarte_app/Screens/Category/categoryscreen.dart';
@@ -27,17 +28,16 @@ class OtpScreen extends StatelessWidget {
                 ),
                 // Background image container
                 Container(
-                  width: screenWidth,
-                  child: Image.asset(
-                    'assets/images/Background 1.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    width: screenWidth,
+                    child: SvgPicture.asset(
+                      "assets/images/Background 1.svg",
+                      fit: BoxFit.cover,
+                    )),
                 Positioned(
                   top: 30, // Adjust this value for overlap on top
                   left: screenWidth / 4, // Center horizontally
-                  child: Image.asset(
-                    "assets/images/Frame.png",
+                  child: SvgPicture.asset(
+                    "assets/images/Frame.svg",
                     width: screenWidth / 2, // Adjust width if needed
                   ),
                 ),

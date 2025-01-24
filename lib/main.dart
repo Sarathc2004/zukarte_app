@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zukarte_app/Screens/Category/categoryscreen.dart';
 import 'package:zukarte_app/Screens/Login/loginscreen.dart';
 
 void main() {

@@ -1,7 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:zukarte_app/Core/colors.dart';
 import 'package:zukarte_app/Screens/Login/loginscreen.dart';
@@ -29,12 +29,11 @@ class SignupScreen extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  width: screenWidth,
-                  child: Image.asset(
-                    'assets/images/Background 1.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    width: screenWidth,
+                    child: SvgPicture.asset(
+                      "assets/images/Background 1.svg",
+                      fit: BoxFit.cover,
+                    )),
                 Positioned(
                   left: screenWidth / 2.5,
                   bottom: screenWidth / 6,
@@ -227,15 +226,15 @@ class SignupScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SocialLoginButton(iconPath: 'assets/images/google.png'),
+                      SocialLoginButton(iconPath: 'assets/images/google.svg'),
                       SizedBox(
                         width: 30,
                       ),
-                      SocialLoginButton(iconPath: 'assets/images/facebook.png'),
+                      SocialLoginButton(iconPath: 'assets/images/facebook.svg'),
                       SizedBox(
                         width: 30,
                       ),
-                      SocialLoginButton(iconPath: 'assets/images/Group 92.png'),
+                      SocialLoginButton(iconPath: 'assets/images/Group 92.svg'),
                     ],
                   ),
                   // After the social login buttons Row widget, add this:
@@ -355,7 +354,7 @@ class SocialLoginButton extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: ClipOval(
-        child: Image.asset(
+        child: SvgPicture.asset(
           iconPath,
           fit: BoxFit.cover,
         ),

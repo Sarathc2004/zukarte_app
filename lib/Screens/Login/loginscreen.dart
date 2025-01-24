@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zukarte_app/Core/colors.dart';
 import 'package:zukarte_app/Screens/OtpScreen/otpscreen.dart';
 import 'package:zukarte_app/Screens/Signup/signupscreen.dart';
+import 'package:zukarte_app/Widgets/carousalwidget.dart';
 import 'package:zukarte_app/Widgets/dotindicator.dart';
 import 'package:zukarte_app/Widgets/elevatedbutton.dart';
 
@@ -27,12 +29,11 @@ class LoginScreen extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  width: screenWidth,
-                  child: Image.asset(
-                    'assets/images/Background 1.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    width: screenWidth,
+                    child: SvgPicture.asset(
+                      "assets/images/Background 1.svg",
+                      fit: BoxFit.cover,
+                    )),
                 Positioned(
                   left: screenWidth / 2.5,
                   bottom: screenWidth / 6,
@@ -197,15 +198,15 @@ class LoginScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SocialLoginButton(iconPath: 'assets/images/google.png'),
+                      SocialLoginButton(iconPath: 'assets/images/google.svg'),
                       SizedBox(
                         width: 30,
                       ),
-                      SocialLoginButton(iconPath: 'assets/images/facebook.png'),
+                      SocialLoginButton(iconPath: 'assets/images/facebook.svg'),
                       SizedBox(
                         width: 30,
                       ),
-                      SocialLoginButton(iconPath: 'assets/images/Group 92.png'),
+                      SocialLoginButton(iconPath: 'assets/images/Group 92.svg'),
                     ],
                   ),
                 ],
@@ -214,35 +215,8 @@ class LoginScreen extends StatelessWidget {
 
             // Carousel slider section
             const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  height: 174.0,
-                  autoPlay: false,
-                  enlargeCenterPage: true,
-                  aspectRatio: 16 / 9,
-                  viewportFraction: 1.0,
-                  onPageChanged: (index, reason) {
-                    _currentIndex.value = index;
-                  },
-                ),
-                items: [
-                  'assets/images/image 43.png',
-                  'assets/images/image 43.png',
-                  'assets/images/image 43.png',
-                ]
-                    .map((item) => ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset(
-                            item,
-                            width: screenWidth,
-                            fit: BoxFit.cover,
-                          ),
-                        ))
-                    .toList(),
-              ),
-            ),
+            CarousalWidget(
+                currentIndex: _currentIndex, screenWidth: screenWidth),
 
             // Dot indicators
             const SizedBox(height: 16),
@@ -285,7 +259,7 @@ class SocialLoginButton extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: ClipOval(
-        child: Image.asset(
+        child: SvgPicture.asset(
           iconPath,
           fit: BoxFit.cover,
         ),

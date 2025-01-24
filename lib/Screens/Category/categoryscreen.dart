@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:zukarte_app/Core/colors.dart';
 import 'package:zukarte_app/Core/database.dart';
+import 'package:zukarte_app/Screens/Activity/activityscreen.dart';
 import 'package:zukarte_app/Widgets/elevatedbutton.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -18,12 +20,11 @@ class CategoryScreen extends StatelessWidget {
           Stack(
             children: [
               Container(
-                width: screenWidth,
-                child: Image.asset(
-                  'assets/images/Background 1.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  width: screenWidth,
+                  child: SvgPicture.asset(
+                    "assets/images/Background 1.svg",
+                    fit: BoxFit.cover,
+                  )),
               Positioned(
                 top: 44,
                 left: 40,
@@ -134,7 +135,15 @@ class CategoryScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
             child: Column(
               children: [
-                Elevatedbutton(onPressed: () {}, text: "Continue"),
+                Elevatedbutton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ActivityScreen(),
+                          ));
+                    },
+                    text: "Continue"),
                 SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
