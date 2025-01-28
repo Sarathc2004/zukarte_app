@@ -12,28 +12,28 @@ class ActivityScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          // Header Section
-          Stack(
-            children: [
-              Container(
-                height: screenHeight / 4,
-                width: screenWidth,
-                child: SvgPicture.asset(
-                  "assets/images/Background 1.svg",
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                left: 20,
-                top: 30,
-                child: GestureDetector(
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: colorconstant.white,
-                    size: 30,
-                  ),
+          // Background Section
+          Container(
+            height: screenHeight,
+          ),
+          Container(
+            width: screenWidth,
+            height: screenHeight / 5.4,
+            child: SvgPicture.asset(
+              "assets/images/Background 1.svg",
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Back Button and Title
+          Positioned(
+            top: 20, // 20px from the top
+            left: 20,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
@@ -42,12 +42,13 @@ class ActivityScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: colorconstant.white,
+                    size: 30,
+                  ),
                 ),
-              ),
-              Positioned(
-                left: 25,
-                top: 70,
-                child: Text(
+                Text(
                   "Activity",
                   style: TextStyle(
                     color: colorconstant.white,
@@ -55,63 +56,105 @@ class ActivityScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
-          // ListView Section
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              itemCount: 1, // Number of items
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 4,
-                  margin: EdgeInsets.only(bottom: 10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.white,
-                      child: SvgPicture.asset(
-                        "assets/images/zukarte_logo.svg", // Replace with your logo
-                        height: 30,
-                        width: 30,
+          // Positioned Content Container
+          Positioned(
+            top: screenHeight / 14,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: screenHeight - 30, // Remaining height
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 20,
+                ),
+                child: ListView.builder(
+                  itemCount: 1, // Number of items
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 1,
+                      margin: const EdgeInsets.only(bottom: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                    title: Text(
-                      "Zukarte",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                    subtitle: Text(
-                      "Explore our marketplace filled with unique items.",
-                      style: TextStyle(fontSize: 10),
-                    ),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Wed",
+                      child: ListTile(
+                        leading: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1,
+                                color: colorconstant.purple,
+                              ),
+                              shape: BoxShape.circle),
+                          child: Image.asset(
+                              "assets/images/zukarte_short_logo-removebg-preview 1.png"),
+                        ),
+                        title: Text(
+                          "Zukarte",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: colorconstant.purple,
+                            fontSize: 14,
                           ),
                         ),
-                        SizedBox(height: 5),
-                        CircleAvatar(
-                          radius: 5,
-                          backgroundColor: Colors.red,
+                        subtitle: Text(
+                          "Welcome to Zukarte.. Explore our Marketplace filled with unique items.. exciting deals. Signup or login now to unlock exclusive features like managing your cart, saving pinned items, chatting with sellers, and more. Don’t miss out! Create your account today and start shopping!",
+                          maxLines: 2,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(fontSize: 12),
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Wed",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: colorconstant.purple,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+
+                            Container(
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                    color: colorconstant.purple,
+                                    shape: BoxShape.circle),
+                                child: Center(
+                                  child: Text(
+                                    "1",
+                                    style: TextStyle(
+                                      color: colorconstant.white,
+                                    ),
+                                  ),
+                                ))
+                            // CircleAvatar(
+                            //   radius: 7,
+                            //   backgroundColor: colorconstant.purple,
+                            //   child: Center(
+                            //       child: Text(
+                            //     "1",
+                            //     style: TextStyle(color: colorconstant.white),
+                            //   )),
+                            // ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           ),
         ],

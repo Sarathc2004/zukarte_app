@@ -9,4 +9,5 @@ class colorconstant {
   static Color white = Color(0xffffffff);
   static Color gray = Color(0xff999999);
   static Color black = Color(0xff424347);
+  static Color lightorange = Color(0xffFFE5A9);
 }
